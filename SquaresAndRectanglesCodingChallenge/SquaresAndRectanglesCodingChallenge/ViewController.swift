@@ -10,79 +10,17 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: - Shapes.
-    let whiteView: UIView = {
-        let whiteView = UIView()
-        whiteView.backgroundColor = .white
-        whiteView.translatesAutoresizingMaskIntoConstraints = false
-        return whiteView
-    }()
-    
-    let purpleView: UIView = {
-        let purpleView = UIView()
-        purpleView.backgroundColor = .systemPurple
-        purpleView.translatesAutoresizingMaskIntoConstraints = false
-        return purpleView
-    }()
-    
-    let redView: UIView = {
-        let redView = UIView()
-        redView.backgroundColor = .systemRed
-        redView.translatesAutoresizingMaskIntoConstraints = false
-        return redView
-    }()
-    
-    let blueView: UIView = {
-        let blueView = UIView()
-        blueView.backgroundColor = .systemBlue
-        blueView.translatesAutoresizingMaskIntoConstraints = false
-        return blueView
-    }()
+    let redView = Shape(backgroundColor: .systemRed)
+    let blueView = Shape(backgroundColor: .systemBlue)
+    let whiteView = Shape(backgroundColor: .white)
+    let purpleView = Shape(backgroundColor: .systemPurple)
     
     // MARK: - Labels.
-    
-    let redViewLabel: UILabel = {
-        let redViewLabel = UILabel()
-        redViewLabel.font = UIFont.systemFont(ofSize: 17)
-        redViewLabel.text = "Red Square\n(170x170)"
-        redViewLabel.numberOfLines = 2
-        redViewLabel.textColor = .black
-        redViewLabel.textAlignment = .left
-        redViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        return redViewLabel
-    }()
-    
-    let blueViewLabel: UILabel = {
-        let blueViewLabel = UILabel()
-        blueViewLabel.font = UIFont.systemFont(ofSize: 17)
-        blueViewLabel.text = "Blue\nSquare\n(120x120)"
-        blueViewLabel.numberOfLines = 3
-        blueViewLabel.textColor = .black
-        blueViewLabel.textAlignment = .right
-        blueViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        return blueViewLabel
-    }()
-    
-    let whiteViewLabel: UILabel = {
-        let whiteViewLabel = UILabel()
-        whiteViewLabel.font = UIFont.systemFont(ofSize: 17)
-        whiteViewLabel.text = "White Rectangle (20 offset)"
-        whiteViewLabel.numberOfLines = 3
-        whiteViewLabel.textColor = .black
-        whiteViewLabel.textAlignment = .center
-        whiteViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        return whiteViewLabel
-    }()
-    
-    let purpleViewLabel: UILabel = {
-        let purpleViewLabel = UILabel()
-        purpleViewLabel.font = UIFont.systemFont(ofSize: 11)
-        purpleViewLabel.text = "Purple Rectangle"
-        purpleViewLabel.numberOfLines = 2
-        purpleViewLabel.textColor = .black
-        purpleViewLabel.textAlignment = .center
-        purpleViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        return purpleViewLabel
-    }()
+    let redViewLabel = ShapeLabel(textAlignment: .left, fontSize: 17, textColor: .black, text: "Red Square\n(170x170)", numberOfLines: 2)
+    let blueViewLabel = ShapeLabel(textAlignment: .right, fontSize: 17, textColor: .black, text: "Blue\nSquare\n(120x120)", numberOfLines: 3)
+    let whiteViewLabel = ShapeLabel(textAlignment: .center, fontSize: 17, textColor: .black, text: "White Rectangle (20 offset)", numberOfLines: 3)
+    let purpleViewLabel = ShapeLabel(textAlignment: .center, fontSize: 11, textColor: .black, text: "Purple Rectangle", numberOfLines: 2)
+    var timerLabel = TimerLabel(textAlignment: .center, fontSize: 24, weight: .regular, textColor: .white, text: "", numberOfLines: 1)
     
     // MARK: - References to constraints
     
@@ -113,20 +51,6 @@ class ViewController: UIViewController {
     // MARK: - Timer
     
     var timer = Timer()
-    
-    var timerLabel: UILabel = {
-        var timerLabel = UILabel()
-        timerLabel.font = UIFont.monospacedSystemFont(ofSize: 24, weight: .regular)
-        timerLabel.text = ""
-        timerLabel.textColor = .white
-        timerLabel.numberOfLines = 1
-        timerLabel.textAlignment = .center
-        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm:ss:SSS"
-        return timerLabel
-    }()
-    
     var count: Double = 0.0
     
     // MARK: - viewDidLoad().
@@ -422,4 +346,3 @@ class ViewController: UIViewController {
         ])
     }
 }
-
