@@ -13,6 +13,9 @@
 		5B2C495F28CCF54800DEA301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C495D28CCF54800DEA301 /* Main.storyboard */; };
 		5B2C496128CCF54A00DEA301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C496028CCF54A00DEA301 /* Assets.xcassets */; };
 		5B2C496428CCF54A00DEA301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C496228CCF54A00DEA301 /* LaunchScreen.storyboard */; };
+		5B619A3128D0920900F6487A /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B619A3028D0920900F6487A /* Shape.swift */; };
+		5B619A3328D092CB00F6487A /* ShapeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B619A3228D092CB00F6487A /* ShapeLabel.swift */; };
+		5B619A3528D092F600F6487A /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B619A3428D092F600F6487A /* TimerLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		5B2C496028CCF54A00DEA301 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B2C496328CCF54A00DEA301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B2C496528CCF54A00DEA301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B619A3028D0920900F6487A /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		5B619A3228D092CB00F6487A /* ShapeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeLabel.swift; sourceTree = "<group>"; };
+		5B619A3428D092F600F6487A /* TimerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,8 @@
 			children = (
 				5B2C495728CCF54800DEA301 /* AppDelegate.swift */,
 				5B2C495928CCF54800DEA301 /* SceneDelegate.swift */,
+				5B619A2B28D0911A00F6487A /* Labels */,
+				5B619A2A28D0910D00F6487A /* Shape */,
 				5B2C495B28CCF54800DEA301 /* ViewController.swift */,
 				5B2C495D28CCF54800DEA301 /* Main.storyboard */,
 				5B2C496028CCF54A00DEA301 /* Assets.xcassets */,
@@ -65,6 +73,23 @@
 				5B2C496528CCF54A00DEA301 /* Info.plist */,
 			);
 			path = SquaresAndRectanglesCodingChallenge;
+			sourceTree = "<group>";
+		};
+		5B619A2A28D0910D00F6487A /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				5B619A3028D0920900F6487A /* Shape.swift */,
+			);
+			path = Shape;
+			sourceTree = "<group>";
+		};
+		5B619A2B28D0911A00F6487A /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				5B619A3228D092CB00F6487A /* ShapeLabel.swift */,
+				5B619A3428D092F600F6487A /* TimerLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +166,9 @@
 				5B2C495C28CCF54800DEA301 /* ViewController.swift in Sources */,
 				5B2C495828CCF54800DEA301 /* AppDelegate.swift in Sources */,
 				5B2C495A28CCF54800DEA301 /* SceneDelegate.swift in Sources */,
+				5B619A3328D092CB00F6487A /* ShapeLabel.swift in Sources */,
+				5B619A3528D092F600F6487A /* TimerLabel.swift in Sources */,
+				5B619A3128D0920900F6487A /* Shape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
