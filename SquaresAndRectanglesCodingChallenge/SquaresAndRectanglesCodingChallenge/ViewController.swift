@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         view.addSubview(timerLabel)
         
         // Constraints.
-        layoutWhiteViewConstraintsBeforeTap()
+        layoutWhiteViewConstraints(leading: 20, trailing: -20, top: 190, bottom: -140)
         layoutRedViewAndBlueViewConstraints()
         applyOrientationConstraints()
         layoutRedViewLabelConstraints()
@@ -80,14 +80,14 @@ class ViewController: UIViewController {
         // Tap gesture.
         setupTapGesture()
     }
-
+    
     // MARK: - Timer methods.
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         runTimer()
     }
-   
+    
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTimerUI), userInfo: nil, repeats: true)
     }
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         let ms = Int((interval.truncatingRemainder(dividingBy: 1)) * 1000)
         return String(format: "%0.2d:%0.2d:%0.2d.%0.3d", hours, minutes, seconds, ms)
     }
-
+    
     // MARK: - Tap methods.
     
     func setupTapGesture() {
@@ -120,20 +120,8 @@ class ViewController: UIViewController {
         wasWhiteOrPurpleTapped = true
         count = 0
         
-        whiteViewLeading?.isActive = false
-        whiteViewTrailing?.isActive = false
-        purpleViewLeading?.isActive = false
-        purpleViewTrailing?.isActive = false
-        
-        whiteViewLeading = whiteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 170)
-        whiteViewTrailing = whiteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -120)
-        purpleViewLeading = purpleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 190)
-        purpleViewTrailing = purpleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -140)
-        
-        whiteViewLeading?.isActive = true
-        whiteViewTrailing?.isActive = true
-        purpleViewLeading?.isActive = true
-        purpleViewTrailing?.isActive = true
+        layoutWhiteViewConstraints(leading: 170, trailing: -120, top: 190, bottom: -140)
+        layoutPurpleViewConstraints(leading: 190, trailing: -140, bottom: -20, height: 0.35)
         
         layoutWhiteViewLabelConstraintsAfterTap()
         layoutPurpleViewLabelConstraintsAfterTap()
@@ -155,11 +143,16 @@ class ViewController: UIViewController {
         ])
     }
     
-    func layoutWhiteViewConstraintsBeforeTap() {
-        whiteViewLeading = whiteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
-        whiteViewTrailing = whiteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        whiteViewTop = whiteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 190)
-        whiteViewBottom = whiteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -140)
+    func layoutWhiteViewConstraints(leading: Double, trailing: Double, top: Double, bottom: CGFloat) {
+        whiteViewLeading?.isActive = false
+        whiteViewTrailing?.isActive = false
+        whiteViewTop?.isActive = false
+        whiteViewBottom?.isActive = false
+        
+        whiteViewLeading = whiteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leading)
+        whiteViewTrailing = whiteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: trailing)
+        whiteViewTop = whiteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: top)
+        whiteViewBottom = whiteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottom)
         
         whiteViewLeading?.isActive = true
         whiteViewTrailing?.isActive = true
@@ -167,33 +160,16 @@ class ViewController: UIViewController {
         whiteViewBottom?.isActive = true
     }
     
-    func layoutPurpleViewConstraintsBeforeTap() {
+    func layoutPurpleViewConstraints(leading: Double, trailing: Double, bottom: Double, height: CGFloat) {
         purpleViewLeading?.isActive = false
         purpleViewTrailing?.isActive = false
         purpleViewBottom?.isActive = false
         purpleViewHeight?.isActive = false
         
-        purpleViewLeading = purpleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40)
-        purpleViewTrailing = purpleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40)
-        purpleViewBottom = purpleView.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -20)
-        purpleViewHeight = purpleView.heightAnchor.constraint(equalTo: whiteView.heightAnchor, multiplier: 0.35)
-        
-        purpleViewLeading?.isActive = true
-        purpleViewTrailing?.isActive = true
-        purpleViewBottom?.isActive = true
-        purpleViewHeight?.isActive = true
-    }
-    
-    func layoutPurpleViewConstraintsAfterTap() {
-        purpleViewLeading?.isActive = false
-        purpleViewTrailing?.isActive = false
-        purpleViewBottom?.isActive = false
-        purpleViewHeight?.isActive = false
-        
-        purpleViewLeading = purpleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 190)
-        purpleViewTrailing = purpleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -140)
-        purpleViewBottom = purpleView.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -20)
-        purpleViewHeight = purpleView.heightAnchor.constraint(equalTo: whiteView.heightAnchor, multiplier: 0.35)
+        purpleViewLeading = purpleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leading)
+        purpleViewTrailing = purpleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: trailing)
+        purpleViewBottom = purpleView.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: bottom)
+        purpleViewHeight = purpleView.heightAnchor.constraint(equalTo: whiteView.heightAnchor, multiplier: height)
         
         purpleViewLeading?.isActive = true
         purpleViewTrailing?.isActive = true
@@ -222,7 +198,7 @@ class ViewController: UIViewController {
             purpleViewLabel.isHidden = true
         } else if UIDevice.current.orientation.isPortrait && wasWhiteOrPurpleTapped {
             purpleView.isHidden = false
-            layoutPurpleViewConstraintsAfterTap()
+            layoutPurpleViewConstraints(leading: 190, trailing: -140, bottom: -20, height: 0.35)
             
             whiteViewLabel.isHidden = false
             layoutWhiteViewLabelConstraintsAfterTap()
@@ -231,7 +207,7 @@ class ViewController: UIViewController {
             layoutPurpleViewLabelConstraintsAfterTap()
         } else {
             // Portrait and before tap.
-            layoutPurpleViewConstraintsBeforeTap()
+            layoutPurpleViewConstraints(leading: 40, trailing: -40, bottom: -20, height: 0.35)
             layoutWhiteViewLabelConstraintsBeforeTap()
             layoutPurpleViewLabelConstraintsBeforeTap()
             purpleView.isHidden = false
