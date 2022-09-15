@@ -73,8 +73,7 @@ class ViewController: UIViewController {
         layoutWhiteViewConstraints(leading: 20, trailing: -20, top: 190, bottom: -140)
         layoutRedViewAndBlueViewConstraints()
         applyOrientationConstraints()
-        layoutRedViewLabelConstraints()
-        layoutBlueViewLabelConstraints()
+        layoutRedViewLabelAndBlueViewLabelConstraints()
         layoutTimerLabelConstraints()
         
         // Tap gesture.
@@ -122,7 +121,7 @@ class ViewController: UIViewController {
         
         layoutWhiteViewConstraints(leading: 170, trailing: -120, top: 190, bottom: -140)
         layoutPurpleViewConstraints(leading: 190, trailing: -140, bottom: -20, height: 0.35)
-
+        
         layoutWhiteViewLabelConstraints(centerX: whiteView.centerXAnchor, centerY: whiteView.centerYAnchor, height: 70, width: 100, text: "White\nRectangle\n(20 offset)")
         layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 30, width: 60, text: "Purple\nRectangle")
     }
@@ -207,15 +206,15 @@ class ViewController: UIViewController {
             
             purpleViewLabel.isHidden = false
             layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 30, width: 60, text: "Purple\nRectangle")
-           
+            
         } else {
             // Portrait and before tap.
             purpleView.isHidden = false
             layoutPurpleViewConstraints(leading: 40, trailing: -40, bottom: -20, height: 0.35)
-
+            
             whiteViewLabel.isHidden = false
             layoutWhiteViewLabelConstraints(centerX: whiteView.centerXAnchor, centerY: whiteView.centerYAnchor, height: 70, width: 250, text: "White Rectangle (20 offset)")
-
+            
             purpleViewLabel.isHidden = false
             layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 15, width: 100, text: "Purple Rectangle")
         }
@@ -228,24 +227,20 @@ class ViewController: UIViewController {
     
     // MARK: - Methods to lay out the labels' constraints.
     
-    func layoutRedViewLabelConstraints() {
+    func layoutRedViewLabelAndBlueViewLabelConstraints() {
         NSLayoutConstraint.activate([
             redViewLabel.centerXAnchor.constraint(equalTo: redView.centerXAnchor),
             redViewLabel.centerYAnchor.constraint(equalTo: redView.centerYAnchor),
             redViewLabel.heightAnchor.constraint(equalToConstant: 60),
-            redViewLabel.widthAnchor.constraint(equalToConstant: 120)
-        ])
-    }
-    
-    func layoutBlueViewLabelConstraints() {
-        NSLayoutConstraint.activate([
+            redViewLabel.widthAnchor.constraint(equalToConstant: 120),
+            
             blueViewLabel.centerXAnchor.constraint(equalTo: blueView.centerXAnchor),
             blueViewLabel.centerYAnchor.constraint(equalTo: blueView.centerYAnchor),
             blueViewLabel.heightAnchor.constraint(equalToConstant: 70),
             blueViewLabel.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
-
+    
     func layoutWhiteViewLabelConstraints(centerX: NSLayoutXAxisAnchor, centerY: NSLayoutYAxisAnchor, height: CGFloat, width: CGFloat, text: String) {
         whiteViewLabelCenterX?.isActive = false
         whiteViewLabelCenterY?.isActive = false
@@ -283,7 +278,7 @@ class ViewController: UIViewController {
         
         purpleViewLabel.text = text
     }
-
+    
     func layoutTimerLabelConstraints() {
         NSLayoutConstraint.activate([
             timerLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
