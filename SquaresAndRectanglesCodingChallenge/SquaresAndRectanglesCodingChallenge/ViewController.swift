@@ -122,9 +122,9 @@ class ViewController: UIViewController {
         
         layoutWhiteViewConstraints(leading: 170, trailing: -120, top: 190, bottom: -140)
         layoutPurpleViewConstraints(leading: 190, trailing: -140, bottom: -20, height: 0.35)
-        
-        layoutWhiteViewLabelConstraintsAfterTap()
-        layoutPurpleViewLabelConstraintsAfterTap()
+
+        layoutWhiteViewLabelConstraints(centerX: whiteView.centerXAnchor, centerY: whiteView.centerYAnchor, height: 70, width: 100, text: "White\nRectangle\n(20 offset)")
+        layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 30, width: 60, text: "Purple\nRectangle")
     }
     
     // MARK: - Methods to lay out the views' constraints.
@@ -177,6 +177,8 @@ class ViewController: UIViewController {
         purpleViewHeight?.isActive = true
     }
     
+    // MARK: - Orientation changes
+    
     func applyOrientationConstraints() {
         if UIDevice.current.orientation.isLandscape {
             purpleViewLeading?.isActive = false
@@ -201,18 +203,21 @@ class ViewController: UIViewController {
             layoutPurpleViewConstraints(leading: 190, trailing: -140, bottom: -20, height: 0.35)
             
             whiteViewLabel.isHidden = false
-            layoutWhiteViewLabelConstraintsAfterTap()
+            layoutWhiteViewLabelConstraints(centerX: whiteView.centerXAnchor, centerY: whiteView.centerYAnchor, height: 70, width: 100, text: "White\nRectangle\n(20 offset)")
             
             purpleViewLabel.isHidden = false
-            layoutPurpleViewLabelConstraintsAfterTap()
+            layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 30, width: 60, text: "Purple\nRectangle")
+           
         } else {
             // Portrait and before tap.
-            layoutPurpleViewConstraints(leading: 40, trailing: -40, bottom: -20, height: 0.35)
-            layoutWhiteViewLabelConstraintsBeforeTap()
-            layoutPurpleViewLabelConstraintsBeforeTap()
             purpleView.isHidden = false
+            layoutPurpleViewConstraints(leading: 40, trailing: -40, bottom: -20, height: 0.35)
+
             whiteViewLabel.isHidden = false
+            layoutWhiteViewLabelConstraints(centerX: whiteView.centerXAnchor, centerY: whiteView.centerYAnchor, height: 70, width: 250, text: "White Rectangle (20 offset)")
+
             purpleViewLabel.isHidden = false
+            layoutPurpleViewLabelConstraints(centerX: purpleView.centerXAnchor, centerY: purpleView.centerYAnchor, height: 15, width: 100, text: "Purple Rectangle")
         }
     }
     
@@ -240,79 +245,45 @@ class ViewController: UIViewController {
             blueViewLabel.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
-    
-    func layoutWhiteViewLabelConstraintsBeforeTap() {
+
+    func layoutWhiteViewLabelConstraints(centerX: NSLayoutXAxisAnchor, centerY: NSLayoutYAxisAnchor, height: CGFloat, width: CGFloat, text: String) {
         whiteViewLabelCenterX?.isActive = false
         whiteViewLabelCenterY?.isActive = false
         whiteViewLabelHeight?.isActive = false
         whiteViewLabelWidth?.isActive = false
         
-        whiteViewLabelCenterX = whiteViewLabel.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor)
-        whiteViewLabelCenterY = whiteViewLabel.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor)
-        whiteViewLabelHeight = whiteViewLabel.heightAnchor.constraint(equalToConstant: 70)
-        whiteViewLabelWidth = whiteViewLabel.widthAnchor.constraint(equalToConstant: 250)
-        
-        whiteViewLabelCenterX?.isActive = true
-        whiteViewLabelCenterY?.isActive = true
-        whiteViewLabelHeight?.isActive = true
-        whiteViewLabelWidth?.isActive = true
-    }
-    
-    func layoutWhiteViewLabelConstraintsAfterTap() {
-        whiteViewLabelCenterX?.isActive = false
-        whiteViewLabelCenterY?.isActive = false
-        whiteViewLabelHeight?.isActive = false
-        whiteViewLabelWidth?.isActive = false
-        
-        whiteViewLabelCenterX = whiteViewLabel.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor)
-        whiteViewLabelCenterY = whiteViewLabel.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor)
-        whiteViewLabelHeight = whiteViewLabel.heightAnchor.constraint(equalToConstant: 70)
-        whiteViewLabelWidth = whiteViewLabel.widthAnchor.constraint(equalToConstant: 100)
+        whiteViewLabelCenterX = whiteViewLabel.centerXAnchor.constraint(equalTo: centerX)
+        whiteViewLabelCenterY = whiteViewLabel.centerYAnchor.constraint(equalTo: centerY)
+        whiteViewLabelHeight = whiteViewLabel.heightAnchor.constraint(equalToConstant: height)
+        whiteViewLabelWidth = whiteViewLabel.widthAnchor.constraint(equalToConstant: width)
         
         whiteViewLabelCenterX?.isActive = true
         whiteViewLabelCenterY?.isActive = true
         whiteViewLabelHeight?.isActive = true
         whiteViewLabelWidth?.isActive = true
         
-        whiteViewLabel.text = "White\nRectangle\n(20 offset)"
+        whiteViewLabel.text = text
     }
     
-    func layoutPurpleViewLabelConstraintsBeforeTap() {
+    func layoutPurpleViewLabelConstraints(centerX: NSLayoutXAxisAnchor, centerY: NSLayoutYAxisAnchor, height: CGFloat, width: CGFloat, text: String) {
         purpleViewLabelCenterX?.isActive = false
         purpleViewLabelCenterY?.isActive = false
         purpleViewLabelHeight?.isActive = false
         purpleViewLabelWidth?.isActive = false
         
-        purpleViewLabelCenterX = purpleViewLabel.centerXAnchor.constraint(equalTo: purpleView.centerXAnchor)
-        purpleViewLabelCenterY = purpleViewLabel.centerYAnchor.constraint(equalTo: purpleView.centerYAnchor)
-        purpleViewLabelHeight = purpleViewLabel.heightAnchor.constraint(equalToConstant: 15)
-        purpleViewLabelWidth = purpleViewLabel.widthAnchor.constraint(equalToConstant: 100)
-        
-        purpleViewLabelCenterX?.isActive = true
-        purpleViewLabelCenterY?.isActive = true
-        purpleViewLabelHeight?.isActive = true
-        purpleViewLabelWidth?.isActive = true
-    }
-    
-    func layoutPurpleViewLabelConstraintsAfterTap() {
-        purpleViewLabelCenterX?.isActive = false
-        purpleViewLabelCenterY?.isActive = false
-        purpleViewLabelHeight?.isActive = false
-        purpleViewLabelWidth?.isActive = false
-        
-        purpleViewLabelCenterX = purpleViewLabel.centerXAnchor.constraint(equalTo: purpleView.centerXAnchor)
-        purpleViewLabelCenterY = purpleViewLabel.centerYAnchor.constraint(equalTo: purpleView.centerYAnchor)
-        purpleViewLabelHeight = purpleViewLabel.heightAnchor.constraint(equalToConstant: 30)
-        purpleViewLabelWidth = purpleViewLabel.widthAnchor.constraint(equalToConstant: 60)
+        purpleViewLabelCenterX = purpleViewLabel.centerXAnchor.constraint(equalTo: centerX)
+        purpleViewLabelCenterY = purpleViewLabel.centerYAnchor.constraint(equalTo: centerY)
+        purpleViewLabelHeight = purpleViewLabel.heightAnchor.constraint(equalToConstant: height)
+        purpleViewLabelWidth = purpleViewLabel.widthAnchor.constraint(equalToConstant: width)
         
         purpleViewLabelCenterX?.isActive = true
         purpleViewLabelCenterY?.isActive = true
         purpleViewLabelHeight?.isActive = true
         purpleViewLabelWidth?.isActive = true
         
-        purpleViewLabel.text = "Purple\nRectangle"
+        purpleViewLabel.text = text
     }
-    
+
     func layoutTimerLabelConstraints() {
         NSLayoutConstraint.activate([
             timerLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
